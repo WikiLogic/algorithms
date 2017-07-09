@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
-class WlPremise extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    }
-  }
+class Premise extends Component {
 
   render() {
 
@@ -21,4 +14,4 @@ class WlPremise extends Component {
   }
 }
 
-export default WlPremise;
+export default Premise;
