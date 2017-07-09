@@ -13,12 +13,24 @@ class App extends Component {
     return (
       <HashRouter>
         <div className="app">
-          <div>
-            <Link to="/probability">Probability</Link>
-            <Link to="/graph">Graph</Link>
+          {/*
+          <div className="nav">
+            <Link to="/probability" className="nav__link">Probability</Link>
+            <Link to="/graph" className="nav__link">Graph</Link>
           </div>
-          <Route path="/probability" component={ProbabilityScene}/>
-          <Route path="/graph" component={GraphScene}/>
+          */}
+          <div className="body">
+            <div className="body__panel">
+              <ProbabilityScene/>
+            </div>
+            <div className="body__panel">
+              <GraphScene/>
+            </div>
+            {/*
+            <Route path="/probability" component={ProbabilityScene}/>
+            <Route path="/graph" component={GraphScene}/>
+            */}
+          </div>
         </div>
       </HashRouter>
     );

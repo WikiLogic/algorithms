@@ -9,30 +9,30 @@ class ProbabilityScene extends Component {
 
     var claims = [
       {
-        text: "Claim 1", probability: 0.5,
+        text: "Claim", probability: 0.5,
         args: [
           {
-            title: "A single claim", 
+            title: "Argument", 
             id: "1", type: "SUPPORTS", probability: 0.5,
             premises: [
-              { id: "n", text: "premis text", probability: 0.5 }
+              { id: "n", text: "Premise", probability: 0.5 }
             ]
           },
           {
-            title: "Two 0.5 claims", 
+            title: "Argument", 
             id: "2", type: "SUPPORTS", probability: 0.5,
             premises: [
-              { id: "n", text: "premis text", probability: 0.5 },
-              { id: "n", text: "premis text", probability: 0.5 }
+              { id: "n", text: "Premise", probability: 0.5 },
+              { id: "n", text: "Premise", probability: 0.5 }
             ]
           },
           {
-            title: "Three 0.5 claims", 
-            id: "3", type: "SUPPORTS", probability: 0.5,
+            title: "Argument", 
+            id: "3", type: "OPPOSES", probability: 0.5,
             premises: [
-              { id: "n", text: "premis text", probability: 0.5 },
-              { id: "n", text: "premis text", probability: 0.5 },
-              { id: "n", text: "premis text", probability: 0.5 }
+              { id: "n", text: "Premise", probability: 0.5 },
+              { id: "n", text: "Premise", probability: 0.5 },
+              { id: "n", text: "Premise", probability: 0.5 }
             ]
           }
         ]
@@ -63,7 +63,7 @@ class ProbabilityScene extends Component {
 
     return (
       <div className="Arguments">
-        <p>This page is for working out how the probability of each argument and claim should be worked out.</p>
+        <p>This area is for working out how the probability of each argument and claim should be worked out.</p>
         {claims}
       </div>
     );

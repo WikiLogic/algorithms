@@ -12,9 +12,9 @@ class Arg extends Component {
     });
 
     return (
-      <div className="argument">
+      <div className={`argument argument__${this.props.arg.type}`}>
         <div className="argument__title">
-          [{this.props.arg.probability}] {this.props.arg.title}
+          [{this.props.arg.probability}] {this.props.arg.title} <small>{this.props.arg.type}</small>
         </div>
         <div className="argument__premises">
           {premises}
