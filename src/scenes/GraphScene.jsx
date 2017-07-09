@@ -15,7 +15,7 @@ class GraphScene extends Component {
 
     return (
       <div className="graph-scene">
-        <p>This area is for working out how to propogate probability updates throughout the graph</p>
+        <p>This area is for working out how to propogate updates through the graph</p>
         
       </div>
     );
