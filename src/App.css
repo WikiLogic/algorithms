@@ -1,0 +1,13 @@
+.app {
+  padding: 10px;
+}
+
+.argument {
+  padding: 10px;
+}
+
+.premise {
+  margin-left: 8px;
+  border-left: 1px solid black;
+  padding-left: 8px;
+}
