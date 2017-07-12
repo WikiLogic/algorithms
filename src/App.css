@@ -9,6 +9,7 @@ body { background: #eee; padding: 10px; }
 
 .body {
   display: flex;
+  flex-direction: column;
 }
 .body__panel {
   background: white;
@@ -19,6 +20,7 @@ body { background: #eee; padding: 10px; }
 .claim {
   font-size: 24px;
 }
+
 
 .argument {
   font-size: 20px;
@@ -34,9 +36,34 @@ body { background: #eee; padding: 10px; }
   color: red;
 }
 
+.claim-card,
+.arg-card {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px 15px;
+  display: inline-block;
+}
+.arg-card__SUPPORTS {
+  color: green;
+}
+.arg-card__OPPOSES {
+  color: red;
+}
+
+
 .premise {
   font-size: 16px;
   margin-left: 6px;
   border-left: 1px solid black;
   padding-left: 10px;
+}
+
+.graph-scene__row {
+  display: flex;
+  padding: 10px 0;
+}
+.graph-scene__column {
+  flex-grow: 1;
+  text-align: center;
+  padding: 10px;
 }
