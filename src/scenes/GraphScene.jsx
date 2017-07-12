@@ -60,12 +60,18 @@ class GraphScene extends Component {
 
   render() {
 
+    var lines = [];
+
+    this.state.links.forEach(function(link, i){
+      lines.push(<line x1={i * 4} y1="0" x2="0" y2={i * 4}/>);
+    });
+
     return (
       <div className="graph-scene">
         <p>Working out graph propogation</p>
         <svg className="graph-scene__links-svg" viewBox="0 0 1000 100" ref="svg">
           {/* The idea is to get the position of the html nodes and map them to this svg */}
-          <line x1="20" y1="100" x2="100" y2="20" stroke-width="1" stroke="black"/>
+          {lines}
         </svg>
         <div className="graph-scene__row">
           <div className="graph-scene__column">
