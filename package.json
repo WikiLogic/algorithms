@@ -16,5 +16,6 @@
   "devDependencies": {
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1"
-  }
+  },
+  "homepage": "https://wikilogic.github.io/algorithms/build/"
 }
