@@ -5,7 +5,7 @@ class ArgCard extends Component {
   render() {
 
     return (
-      <div className={`arg-card arg-card__${this.props.arg.type}`}>
+      <div className="arg-card">
         [{this.props.arg.probability}] {this.props.arg.text}
       </div>
     );

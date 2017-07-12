@@ -63,7 +63,7 @@ class ProbabilityScene extends Component {
 
     return (
       <div className="Arguments">
-        <p>This area is for working out how the probability of each argument and claim should be worked out.</p>
+        <p>Working out the probability of args -> claim</p>
         {claims}
       </div>
     );

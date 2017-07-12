@@ -58,6 +58,9 @@ body { background: #eee; padding: 10px; }
   padding-left: 10px;
 }
 
+.graph-scene {
+  position: relative;
+}
 .graph-scene__row {
   display: flex;
   padding: 10px 0;
@@ -66,4 +69,10 @@ body { background: #eee; padding: 10px; }
   flex-grow: 1;
   text-align: center;
   padding: 10px;
+}
+.graph-scene__links-svg {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+
 }
