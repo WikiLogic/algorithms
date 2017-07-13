@@ -45,6 +45,7 @@ code {
 .claim-card,
 .arg-card {
   border: 1px solid #eee;
+  background-color: white;
   border-radius: 5px;
   padding: 10px 15px;
   display: inline-block;
@@ -67,6 +68,10 @@ code {
 .graph-scene {
   position: relative;
 }
+.graph-scene__nodes-wrap {
+  position: relative;
+  z-index: 1;
+}
 .graph-scene__row {
   display: flex;
   padding: 10px 0;
@@ -76,11 +81,17 @@ code {
   text-align: center;
   padding: 10px;
 }
+
+.graph-scene__links-svg-wrap {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+}
 .graph-scene__links-svg {
   position: absolute;
   top: 0; bottom: 0;
   left: 0; right: 0;
-
+  width: 100%;
 }
 
 .graph-scene__links-svg line  {

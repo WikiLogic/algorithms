@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import ClaimCard from '../components/ClaimCard.jsx';
 import ArgCard from '../components/ArgCard.jsx';
+import Lines from '../components/Lines.jsx';
 
 class GraphScene extends Component {
 
   constructor(props) {
     super(props);
-
-
 
     this.state = {
       claim1: { text: 'claim1', probability: 0.5 },
@@ -36,7 +35,6 @@ class GraphScene extends Component {
         { id:"7", type: "OPPOSES", src: "arg6", tgt: "claim4" },
         { id:"8", type: "SUPPORTS", src: "arg7", tgt: "claim4" },
         { id:"9", type: "SUPPORTS", src: "arg7", tgt: "claim5" },
-        { id:"10", type: "OPPOSES", src: "arg8", tgt: "claim4" },
         { id:"11", type: "OPPOSES", src: "arg8", tgt: "claim5" },
         { id:"12", type: "USED_IN", src: "claim6", tgt: "arg5" },
         { id:"13", type: "USED_IN", src: "claim6", tgt: "arg6" },
@@ -50,10 +48,15 @@ class GraphScene extends Component {
         { id:"21", type: "USED_IN", src: "claim4", tgt: "arg3" },
         { id:"22", type: "USED_IN", src: "claim5", tgt: "arg3" },
         { id:"23", type: "USED_IN", src: "claim5", tgt: "arg4" }
-      ]
+      ],
+      lines: [],
+      svgBound: {
+        width: 0, height: 0
+      }
     }
 
     this.getNodeCoords = this.getNodeCoords.bind(this);
+    this.lines = []; //this will hold an array of lines to be rendered by Lines
   }
 
   //returns the coords for the middle of the node
@@ -66,7 +69,8 @@ class GraphScene extends Component {
   }
 
   componentDidMount(){
-    var svgBound = this.refs.svg.getBoundingClientRect();
+    var svgBound = this.refs.svgwrap.getBoundingClientRect();
+    var lines = [];
     //for each link
     for (let i = 0; i < this.state.links.length; i++) {
 
@@ -81,124 +85,122 @@ class GraphScene extends Component {
       tgtCoords.y -= svgBound.top;
 
       //apply them to the line!
-      var line = this.refs["line" + this.state.links[i].id];
-      line.x1 = srcCoords.x;
-      line.y1 = srcCoords.y;
-      line.x2 = tgtCoords.x;
-      line.y2 = tgtCoords.x;
+      var line = {
+        x1: srcCoords.x,
+        y1: srcCoords.y,
+        x2: tgtCoords.x,
+        y2: tgtCoords.y
+      };
+      lines.push(line);
     }
-    this.state.links.forEach(function(link){
-      //get the coords of the 2 nodes this link connects
-    });
 
-    console.log("hihi", this.getNodeCoords(this.refs.claimStarter));
-    //get the coords for each claim & arg
-    this.getNodeCoords(this.refs.claimStarter)
+    console.log('svgBound', svgBound);
+
+    this.setState({
+      lines: lines,
+      svgBound: {
+        width: svgBound.width,
+        height: svgBound.height
+      }
+    });
   }
 
   render() {
 
-    var lines = [];
-
-    this.state.links.forEach(function(link, i){
-      //get the x & y of the src & tgt
-      lines.push(<line x1={i * 4} y1="0" x2="0" y2={i * 4} ref={"line" + link.id} key={i}/>);
-    });
-
     return (
       <div className="graph-scene">
-        <p>Working out graph propogation</p>
-        <svg className="graph-scene__links-svg" viewBox="0 0 1000 100" ref="svg">
-          {/* The idea is to get the position of the html nodes and map them to this svg */}
-          {lines}
-        </svg>
-        <div className="graph-scene__row">
-          <div className="graph-scene__column">
-            <div ref="claim1">
-              <ClaimCard claim={this.state.claim1} />
-            </div>
-          </div>
-          <div className="graph-scene__column">
-            <div ref="claim2">
-              <ClaimCard claim={this.state.claim2}/>
-            </div>
-          </div>
+        <div className="graph-scene__links-svg-wrap" ref="svgwrap">
+          <Lines lines={this.state.lines} svgBound={this.state.svgBound}/>
         </div>
-        <div className="graph-scene__row">
-        <div className="graph-scene__column">
-          <div ref="arg1">
-            <ArgCard arg={this.state.arg1}/>
+        <div className="graph-scene__nodes-wrap">
+          <div className="graph-scene__row">
+            <div className="graph-scene__column">
+              <div ref="claim1">
+                <ClaimCard claim={this.state.claim1} />
+              </div>
+            </div>
+            <div className="graph-scene__column">
+              <div ref="claim2">
+                <ClaimCard claim={this.state.claim2}/>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="graph-scene__column">
-          <div ref="arg2">
-            <ArgCard arg={this.state.arg2}/>
-          </div>
-        </div>
-        <div className="graph-scene__column">
-          <div ref="arg3">
-            <ArgCard arg={this.state.arg3}/>
-          </div>
-        </div>
-        <div className="graph-scene__column">
-          <div ref="arg4">
-            <ArgCard arg={this.state.arg4}/>
-          </div>
-        </div>
-        </div>
-        <div className="graph-scene__row">
+          <div className="graph-scene__row">
           <div className="graph-scene__column">
-            <div ref="claim3">
-              <ClaimCard claim={this.state.claim3}/>
+            <div ref="arg1">
+              <ArgCard arg={this.state.arg1}/>
             </div>
           </div>
           <div className="graph-scene__column">
-            <div ref="claim4">
-              <ClaimCard claim={this.state.claim4}/>
+            <div ref="arg2">
+              <ArgCard arg={this.state.arg2}/>
             </div>
           </div>
           <div className="graph-scene__column">
-            <div ref="claim5">
-              <ClaimCard claim={this.state.claim5}/>
-            </div>
-          </div>
-        </div>
-        <div className="graph-scene__row">
-          <div className="graph-scene__column">
-            <div ref="arg5">
-              <ArgCard arg={this.state.arg5}/>
+            <div ref="arg3">
+              <ArgCard arg={this.state.arg3}/>
             </div>
           </div>
           <div className="graph-scene__column">
-            <div ref="arg6">
-              <ArgCard arg={this.state.arg6}/>
+            <div ref="arg4">
+              <ArgCard arg={this.state.arg4}/>
             </div>
           </div>
-          <div className="graph-scene__column">
-            <div ref="arg7">
-              <ArgCard arg={this.state.arg7}/>
+          </div>
+          <div className="graph-scene__row">
+            <div className="graph-scene__column">
+              <div ref="claim3">
+                <ClaimCard claim={this.state.claim3}/>
+              </div>
+            </div>
+            <div className="graph-scene__column">
+              <div ref="claim4">
+                <ClaimCard claim={this.state.claim4}/>
+              </div>
+            </div>
+            <div className="graph-scene__column">
+              <div ref="claim5">
+                <ClaimCard claim={this.state.claim5}/>
+              </div>
             </div>
           </div>
-          <div className="graph-scene__column">
-            <div ref="arg8">
-              <ArgCard arg={this.state.arg8}/>
+          <div className="graph-scene__row">
+            <div className="graph-scene__column">
+              <div ref="arg5">
+                <ArgCard arg={this.state.arg5}/>
+              </div>
+            </div>
+            <div className="graph-scene__column">
+              <div ref="arg6">
+                <ArgCard arg={this.state.arg6}/>
+              </div>
+            </div>
+            <div className="graph-scene__column">
+              <div ref="arg7">
+                <ArgCard arg={this.state.arg7}/>
+              </div>
+            </div>
+            <div className="graph-scene__column">
+              <div ref="arg8">
+                <ArgCard arg={this.state.arg8}/>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="graph-scene__row">
-          <div className="graph-scene__column">
-            <div ref="claim6">
-              <ClaimCard claim={this.state.claim6}/>
+          <div className="graph-scene__row">
+            <div className="graph-scene__column">
+              <div ref="claim6">
+                <ClaimCard claim={this.state.claim6}/>
+              </div>
             </div>
-          </div>
-          <div className="graph-scene__column">
-            <div ref="claimStarter">
-              <ClaimCard claim={this.state.claimStart}/>
+            <div className="graph-scene__column">
+              <div ref="claimStarter">
+                <ClaimCard claim={this.state.claimStart}/>
+              </div>
             </div>
-          </div>
-          <div className="graph-scene__column">
-            <div ref="claim7">
-              <ClaimCard claim={this.state.claim7}/>
+            <div className="graph-scene__column">
+              <div ref="claim7">
+                <ClaimCard claim={this.state.claim7}/>
+              </div>
             </div>
           </div>
         </div>

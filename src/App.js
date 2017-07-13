@@ -25,6 +25,7 @@ class App extends Component {
               <ProbabilityScene/>
             </div>
             <div className="body__panel">
+              <p>Working out graph propogation</p>
               <GraphScene/>
             </div>
             <div className="body__panel">
