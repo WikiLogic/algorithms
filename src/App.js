@@ -25,7 +25,7 @@ class App extends Component {
               <ProbabilityScene/>
             </div>
             <div className="body__panel">
-              <p>Working out graph propogation</p>
+              <p><strong>Working out graph propogation</strong>, when a claim is updated probabilities need to propogate up the graph.</p>
               <GraphScene/>
             </div>
             <div className="body__panel">
