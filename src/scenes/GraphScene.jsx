@@ -89,7 +89,8 @@ class GraphScene extends Component {
         x1: srcCoords.x,
         y1: srcCoords.y,
         x2: tgtCoords.x,
-        y2: tgtCoords.y
+        y2: tgtCoords.y,
+        type: this.state.links[i].type
       };
       lines.push(line);
     }

@@ -50,6 +50,7 @@ code {
   padding: 10px 15px;
   display: inline-block;
 }
+.claim-card { font-weight: bold; }
 .arg-card__SUPPORTS {
   color: green;
 }
@@ -94,7 +95,15 @@ code {
   width: 100%;
 }
 
-.graph-scene__links-svg line  {
+.graph-scene__links-line  {
   stroke-width: 1;
   stroke: black;
+}
+
+.graph-scene__links-line--OPPOSES {
+  stroke: red;
+}
+
+.graph-scene__links-line--SUPPORTS {
+  stroke: green;
 }
