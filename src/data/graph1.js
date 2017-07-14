@@ -1,32 +1,26 @@
+var claims = [
+    { id: 'claimStarter', text: 'claimStarter', probability: 0.5, updated: 0 },
+    { id: 'claim1', text: 'claim1', probability: 0.5, updated: 0 },
+    { id: 'claim2', text: 'claim2', probability: 0.5, updated: 0 },
+    { id: 'claim3', text: 'claim3', probability: 0.5, updated: 0 },
+    { id: 'claim4', text: 'claim4', probability: 0.5, updated: 0 },
+    { id: 'claim5', text: 'claim5', probability: 0.5, updated: 0 },
+    { id: 'claim6', text: 'claim6', probability: 0.5, updated: 0 },
+    { id: 'claim7', text: 'claim7', probability: 0.5, updated: 0 }
+];
 
-function getClaims(claim){
-    return [
-        { id: 'claimStarter', text: 'claimStarter', probability: 0.5 },
-        { id: 'claim1', text: 'claim1', probability: 0.5 },
-        { id: 'claim2', text: 'claim2', probability: 0.5 },
-        { id: 'claim3', text: 'claim3', probability: 0.5 },
-        { id: 'claim4', text: 'claim4', probability: 0.5 },
-        { id: 'claim5', text: 'claim5', probability: 0.5 },
-        { id: 'claim6', text: 'claim6', probability: 0.5 },
-        { id: 'claim7', text: 'claim7', probability: 0.5 }
-    ]
-}
+var args = [
+    { id: 'arg1', text: 'arg1', probability: 0.5, updated: 0 },
+    { id: 'arg2', text: 'arg2', probability: 0.5, updated: 0 },
+    { id: 'arg3', text: 'arg3', probability: 0.5, updated: 0 },
+    { id: 'arg4', text: 'arg4', probability: 0.5, updated: 0 },
+    { id: 'arg5', text: 'arg5', probability: 0.5, updated: 0 },
+    { id: 'arg6', text: 'arg6', probability: 0.5, updated: 0 },
+    { id: 'arg7', text: 'arg7', probability: 0.5, updated: 0 },
+    { id: 'arg8', text: 'arg8', probability: 0.5, updated: 0 }
+];
 
-function getArgs(claim){
-    return [
-        { id: 'arg1', text: 'arg1', probability: 0.5 },
-        { id: 'arg2', text: 'arg2', probability: 0.5 },
-        { id: 'arg3', text: 'arg3', probability: 0.5 },
-        { id: 'arg4', text: 'arg4', probability: 0.5 },
-        { id: 'arg5', text: 'arg5', probability: 0.5 },
-        { id: 'arg6', text: 'arg6', probability: 0.5 },
-        { id: 'arg7', text: 'arg7', probability: 0.5 },
-        { id: 'arg8', text: 'arg8', probability: 0.5 }
-    ]
-}
-
-function getLinks(){
-    return [
+var links = [
         { id:"1", type: "OPPOSES", src: "arg1", tgt: "claim1" },
         { id:"2", type: "OPPOSES", src: "arg3", tgt: "claim1" },
         { id:"3", type: "SUPPORTS", src: "arg2", tgt: "claim2" },
@@ -50,6 +44,17 @@ function getLinks(){
         { id:"22", type: "USED_IN", src: "claim5", tgt: "arg3" },
         { id:"23", type: "USED_IN", src: "claim5", tgt: "arg4" }
     ]
+
+function getClaims(claim){
+    return claims;
+}
+
+function getArgs(claim){
+    return args;
+}
+
+function getLinks(){
+    return links;
 }
 
 function getArgsUsingClaim(claim) {
@@ -59,7 +64,7 @@ function getArgsUsingClaim(claim) {
     var returnArgIds = [];
     var links = getLinks();
     links.forEach(function(link){
-        if (link.src == claim.id) {
+        if (link.src === claim.id) {
             //we found a link that uses the given claim, save a ref to the arg id from the other end of the link
             returnArgIds.push(link.tgt); //type can only be USED_IN
         }
@@ -71,7 +76,7 @@ function getArgsUsingClaim(claim) {
     args.forEach(function(arg){
         //loop through the arg ids we found above
         returnArgIds.forEach(function(matchId){
-            if (arg.id == matchId) {
+            if (arg.id === matchId) {
                 returnArgs.push(arg);
             }
         });
@@ -80,10 +85,39 @@ function getArgsUsingClaim(claim) {
     return returnArgs;
 }
 
+function getClaimsUsingArg(arg){
+    //We're going up
+    
+    //1. find the links with the given arg as a src, save the claim ids refrenced in those links
+    var returnClaimIds = [];
+    var links = getLinks();
+    links.forEach(function(link){
+        if (link.src === arg.id) {
+            //we found a link that uses the given arg, save a ref to the alcim id from the other end of the link
+            returnClaimIds.push(link.tgt); //could be for or against
+        }
+    });
+
+    //2. use the ids we found to get the claims
+    var returnClaims = [];
+    var claims = getClaims();
+    claims.forEach(function(claim){
+        //loop through the claim ids we found above
+        returnClaimIds.forEach(function(matchId){
+            if (claim.id === matchId) {
+                returnClaims.push(claim);
+            }
+        });
+    });
+
+    return returnClaims;
+}
+
 
 export default {
     getClaims:getClaims,
     getArgs:getArgs,
     getLinks:getLinks,
-    getArgsUsingClaim: getArgsUsingClaim
+    getArgsUsingClaim: getArgsUsingClaim,
+    getClaimsUsingArg: getClaimsUsingArg
 }

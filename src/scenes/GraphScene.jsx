@@ -21,7 +21,8 @@ class GraphScene extends Component {
     }
 
     this.getNodeCoords = this.getNodeCoords.bind(this);
-    this.stepPropogate = this.stepPropogate.bind(this);
+    this.claimClicked = this.claimClicked.bind(this);
+    this.argClicked = this.argClicked.bind(this);
     this.lines = []; //this will hold an array of lines to be rendered by Lines
   }
 
@@ -71,9 +72,24 @@ class GraphScene extends Component {
     });
   }
 
-  stepPropogate(){
-    console.log('step propogation');
-    Propogator.propogateFromAClaim(this.state.claims[0]);
+  claimClicked(claim){
+    var upDatad = Propogator.propagateFrom(claim, "claim");
+
+    this.setState({
+      claims: upDatad.claims,
+      args: upDatad.args,
+      links: upDatad.links
+    });
+  }
+
+  argClicked(arg){
+    var upDatad = Propogator.propagateFrom(arg, "arg");
+
+    this.setState({
+      claims: upDatad.claims,
+      args: upDatad.args,
+      links: upDatad.links
+    });
   }
 
   render() {
@@ -90,12 +106,12 @@ class GraphScene extends Component {
           <div className="graph-scene__row">
             <div className="graph-scene__column">
               <div ref="claim1">
-                <ClaimCard claim={this.state.claims[1]} />
+                <ClaimCard claim={this.state.claims[1]} clickHandler={this.claimClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="claim2">
-                <ClaimCard claim={this.state.claims[2]}/>
+                <ClaimCard claim={this.state.claims[2]} clickHandler={this.claimClicked}/>
               </div>
             </div>
           </div>
@@ -103,22 +119,22 @@ class GraphScene extends Component {
           <div className="graph-scene__row">
             <div className="graph-scene__column">
               <div ref="arg1">
-                <ArgCard arg={this.state.args[0]}/>
+                <ArgCard arg={this.state.args[0]} clickHandler={this.argClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="arg2">
-                <ArgCard arg={this.state.args[1]}/>
+                <ArgCard arg={this.state.args[1]} clickHandler={this.argClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="arg3">
-                <ArgCard arg={this.state.args[2]}/>
+                <ArgCard arg={this.state.args[2]} clickHandler={this.argClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="arg4">
-                <ArgCard arg={this.state.args[3]}/>
+                <ArgCard arg={this.state.args[3]} clickHandler={this.argClicked}/>
               </div>
             </div>
           </div>
@@ -126,17 +142,17 @@ class GraphScene extends Component {
           <div className="graph-scene__row">
             <div className="graph-scene__column">
               <div ref="claim3">
-                <ClaimCard claim={this.state.claims[3]}/>
+                <ClaimCard claim={this.state.claims[3]} clickHandler={this.claimClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="claim4">
-                <ClaimCard claim={this.state.claims[4]}/>
+                <ClaimCard claim={this.state.claims[4]} clickHandler={this.claimClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="claim5">
-                <ClaimCard claim={this.state.claims[5]}/>
+                <ClaimCard claim={this.state.claims[5]} clickHandler={this.claimClicked}/>
               </div>
             </div>
           </div>
@@ -144,22 +160,22 @@ class GraphScene extends Component {
           <div className="graph-scene__row">
             <div className="graph-scene__column">
               <div ref="arg5">
-                <ArgCard arg={this.state.args[4]}/>
+                <ArgCard arg={this.state.args[4]} clickHandler={this.argClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="arg6">
-                <ArgCard arg={this.state.args[5]}/>
+                <ArgCard arg={this.state.args[5]} clickHandler={this.argClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="arg7">
-                <ArgCard arg={this.state.args[6]}/>
+                <ArgCard arg={this.state.args[6]} clickHandler={this.argClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="arg8">
-                <ArgCard arg={this.state.args[7]}/>
+                <ArgCard arg={this.state.args[7]} clickHandler={this.argClicked}/>
               </div>
             </div>
           </div>
@@ -167,24 +183,18 @@ class GraphScene extends Component {
           <div className="graph-scene__row">
             <div className="graph-scene__column">
               <div ref="claim6">
-                <ClaimCard claim={this.state.claims[6]}/>
+                <ClaimCard claim={this.state.claims[6]} clickHandler={this.claimClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="claimStarter">
-                <ClaimCard claim={this.state.claims[0]}/>
+                <ClaimCard claim={this.state.claims[0]} clickHandler={this.claimClicked}/>
               </div>
             </div>
             <div className="graph-scene__column">
               <div ref="claim7">
-                <ClaimCard claim={this.state.claims[7]}/>
+                <ClaimCard claim={this.state.claims[7]} clickHandler={this.claimClicked}/>
               </div>
-            </div>
-          </div>
-
-          <div className="graph-scene__row">
-            <div className="graph-scene__column">
-              <button onClick={this.stepPropogate} type="button">Propogate</button>
             </div>
           </div>
 
