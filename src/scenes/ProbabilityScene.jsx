@@ -36,7 +36,65 @@ class ProbabilityScene extends Component {
             ]
           }
         ]
+      },
+      {
+        text: "Claim 1/2 - 0.5", probability: 0.5,
+        args: [
+          {
+            title: "Argument", 
+            id: "1", type: "SUPPORTS", probability: 0.5,
+            premises: [
+              { id: "n", text: "Premise", probability: 0.1 }
+            ]
+          },
+          {
+            title: "Argument", 
+            id: "2", type: "OPPOSES", probability: 0.5,
+            premises: [
+              { id: "n", text: "Premise", probability: 0.1 }
+            ]
+          }
+        ]
+      },
+      {
+        text: "Claim 2/3 - 0.6", probability: 0.5,
+        args: [
+          {
+            title: "Argument", 
+            id: "1", type: "SUPPORTS", probability: 0.5,
+            premises: [
+              { id: "n", text: "Premise", probability: 0.2 }
+            ]
+          },
+          {
+            title: "Argument", 
+            id: "2", type: "OPPOSES", probability: 0.5,
+            premises: [
+              { id: "n", text: "Premise", probability: 0.1 }
+            ]
+          }
+        ]
+      },
+      {
+        text: "Claim 1/3 - 0.3", probability: 0.5,
+        args: [
+          {
+            title: "Argument", 
+            id: "1", type: "SUPPORTS", probability: 0.5,
+            premises: [
+              { id: "n", text: "Premise", probability: 0.1 }
+            ]
+          },
+          {
+            title: "Argument", 
+            id: "2", type: "OPPOSES", probability: 0.5,
+            premises: [
+              { id: "n", text: "Premise", probability: 0.2 }
+            ]
+          }
+        ]
       }
+
     ];
 
     //run the probability calculations
