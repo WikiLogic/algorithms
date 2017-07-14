@@ -15,8 +15,14 @@ class ClaimCard extends Component {
   render() {
     if (typeof this.props.claim === 'undefined') { return null; }
 
+    if (this.props.claim.updated % 2 == 0) {
+      var pulseClass = "pulse-0";
+    } else {
+      var pulseClass = "pulse-1"; 
+    }
+
     return (
-      <div className="claim-card" onClick={this.handleClick}>
+      <div className={`claim-card ${pulseClass}`} onClick={this.handleClick}>
         [{this.props.claim.probability}] {this.props.claim.text} [{this.props.claim.updated}]
       </div>
     );

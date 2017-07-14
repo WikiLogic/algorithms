@@ -57,7 +57,10 @@ button {
   border-radius: 5px;
   padding: 10px 15px;
   display: inline-block;
+  cursor: pointer;
 }
+.claim-card:hover,
+.arg-card:hover { border-color: blue; }
 .claim-card { font-weight: bold; }
 .arg-card__SUPPORTS {
   color: green;
@@ -66,7 +69,34 @@ button {
   color: red;
 }
 
-
+.pulse-0 {
+  animation-name: pulse-0;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out; 
+}
+.pulse-1 {
+  animation-name: pulse-1;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out; 
+}
+@keyframes pulse-0 {
+  0% {
+    background-color: orange;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+@keyframes pulse-1 {
+  0% {
+    background-color: orange;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
 .premise {
   font-size: 16px;
   margin-left: 6px;
